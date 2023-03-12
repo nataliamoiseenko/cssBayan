@@ -47,6 +47,14 @@ h2 {
   align-items: center;
 }
 
+.container:hover .chk-status {
+  opacity: 1;
+}
+
+.container:hover .title-text {
+  color: #222823;
+}
+
 .title {
   display: flex;
   flex-direction: row;
@@ -58,8 +66,28 @@ label {
   width: 100%;
   text-align: left;
   font-family: 'WorkSans';
-  font-size: 1.7em;
-  font-weight: 400;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.title-text {
+  color: blue;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+label:active {
+  opacity: 0.8;
+}
+
+.container:active > label:not(:active) > img {
+  width: 0;
+}
+
+.container:active > label:not(:active) > input:checked ~ .title .chk-status {
+  transform: rotate(-180deg);
 }
 
 label + label {
@@ -72,10 +100,28 @@ input {
 
 input:checked ~ img {
   display: block;
+  width: 400px;
+}
+
+input:checked ~ .title .title-text {
+  color: #222823;
+}
+
+label:hover > img {
+  width: 400px;
+}
+
+label:hover > .title .chk-status {
+  transform: rotate(225deg);
+}
+
+label:active ~ span {
+  color: red;
 }
 
 .chk-status {
   transition: transform 0.3s;
+  opacity: 0;
 }
 
 input:checked ~ .title .chk-status {
@@ -83,10 +129,12 @@ input:checked ~ .title .chk-status {
 }
 
 img {
-  display: none;
+  display: block;
+  padding-top: 0.7em;
   margin: 0 auto;
-  width: 400px;
+  width: 0px;
   height: auto;
+  transition: width 0.7s;
 }
 
 a {
@@ -118,4 +166,56 @@ svg {
 
 svg:hover {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 980px) {
+  .container {
+    max-width: 600px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  label {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    max-width: 450px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    max-width: 350px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  label {
+    font-size: 1em;
+  }
+
+  input:checked ~ img {
+    width: 250px;
+  }
+
+  img {
+    max-width: 250px;
+  }
+
+  .footer_content {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .container {
+    max-width: 290px;
+  }
 }
